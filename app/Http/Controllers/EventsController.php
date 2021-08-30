@@ -98,12 +98,13 @@ class EventsController extends BaseController
      */
 
     public function getEventsWithWorkshops() {
-        $allWorkshop = Event::all();
-        $responseData = [
-            $allWorkshop,
-            'workshops' => $allWorkshop
-        ];
-        return response()->json($responseData, 200);
+        $allEvents = Event::all();
+        $allEventWithWortkshop = [];
+        foreach( $allEvents as $event ){
+            $allEventWithWortkshop = $event->workshops;
+        }
+        return response($allEvents);
+       
     }
 
 
